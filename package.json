@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "codeceptjs run --steps"
+    "start": "source bin.sh"
   },
   "repository": {
     "type": "git",
