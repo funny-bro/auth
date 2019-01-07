@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/funny-bro/auth#readme",
   "devDependencies": {
-    "codeceptjs": "^1.4.5",
+    "codeceptjs": "^2.0.1",
     "downloadable": "^1.0.2",
     "jest": "^23.6.0",
     "webdriverio": "^4.14.0"
@@ -28,6 +28,7 @@
     "jimp": "^0.6.0",
     "nightmare": "^3.0.1",
     "node-fetch": "^2.2.1",
+    "optimist": "^0.6.1",
     "unirest": "^0.5.1"
   }
 }

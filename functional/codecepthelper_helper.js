@@ -1,5 +1,9 @@
-
+const fs = require('fs')
 const {verifyImage} = require('../lib/verifyImage')
+
+const blackListExtension = ['.jpeg', '.jpg', '.gif', '.js', '.css', '.png'];
+
+let logString = ''
 
 class CodeceptHelper extends Helper {
   // before/after hooks
@@ -9,39 +13,21 @@ class CodeceptHelper extends Helper {
 
   _after() {
     // remove if not used
+    fs.writeFileSync(`${new Date().getTime()}.log`, logString)
   }
- 
-  seeElement(locator) {
+
+  async verifyImage(timeStamp) {
+    if(this.helpers.WebDriverIO)
+      return verifyImage(`${timeStamp}-loginPage.png`, `${timeStamp}-loginPageCrop.png`, 885,673,96,30)
+
     if(this.helpers.Nightmare)
-      this.helpers['Nightmare'].browser.visible(locator);
-  }
-  
-  selectOptionByOrder(selector, order) {
-    console.log(' -=-=-=-=-=-= selectOptionByOrder -=-=-=-=-=')
-    console.log(' click order : ', selector, order)
-    return this.helpers.WebDriverIO.executeScript(function(selector, order){
-      return document.querySelector(selector).selectedIndex = order
-    }, selector, order)
-  }
-
-  clickButton(selector) {
-    console.log(' -=-=-=-=-=-= clickButton -=-=-=-=-=')
-    console.log(' click : ', selector)
-    return this.helpers.WebDriverIO.executeScript(function(selector){
-      console.log( document.querySelector(selector))
-      return document.querySelector(selector).click()
-    }, selector)
-  }
-
-  verifyImage() {
-    return verifyImage()
+      return verifyImage(`${timeStamp}-loginPage.png`, `${timeStamp}-loginPageCrop.png`, 1235,1351,120,45)
   }
 
   submitForm(){
     return this.helpers.WebDriverIO.executeScript(function(){
       document.querySelector('#submit_hn a').click()
     })
-
   }
 }
 

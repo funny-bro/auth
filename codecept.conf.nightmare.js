@@ -1,35 +1,29 @@
 const {LOGIN_ENTRY} = process.env
-const getIP = require('./script/lib/getLocalIp')
+const path = require('path')
 
 exports.config = {
+  timeout: '20000', //20s
   output: './output',
   helpers: {
-    WebDriverIO : {
-      host: 'localhost',
+    "Nightmare": {
       url: `https://${LOGIN_ENTRY}`,
-      browser: "chrome",
+      // "show": true,
+      "restart": false,
       windowSize: '1920x1080',
-      smartWait: 5000,
-      restart: false,
-      waitForTimeout: 10000,
-      unexpectedAlertBehaviour: 'accept',
-      desiredCapabilities: {
-        "loggingPrefs": {"driver": "ALL", "server": "ALL", "browser": "FINE"},
-        captureNetworkTraffic: true
+      openDevTools: true,
+      webPreferences: {
+        webSecurity:false,
+        // preload: path.resolve(`custom-script.js`)
       }
     },
     MyHelper: {
-      require: "./functional/codecepthelper_helper"
-    },
-    REST: {
-      endpoint: "http://localhost:8080"
+      require: "./functional/codecepthelper_nightmare_helper"
     }
   },
   include: {
     I: './functional/steps_file.js'
   },
   bootstrap: function(done) {
-    require('./e2e-server')
     console.log(' -=-=-=-= bootstrap');
     done();
   },
