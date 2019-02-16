@@ -7,12 +7,18 @@
     let cookieValue = argv.cookieValue
     let enuid = argv.ENUID
     let ensid = argv.ENSID
+    let status = 'available'
 
     const payload = {cookieValue : `${cookieValue}`,
                       enuid : `${enuid}`,
-                      ensid : `${ensid}`}
+                      ensid : `${ensid}`,
+                      status : `${status}`}
 
     const condition = {username}
+
+    console.log('payload',payload)
+    console.log('condition',condition)
+
     try {
         await authDao.update(payload, condition)
 
