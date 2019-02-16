@@ -25,3 +25,5 @@ ENUID=$(cat "output/$LOGIN_USERNAME-enuid.txt")
 echo cookieValue=\'$cookieValue\'
 echo ENSID=\'$ENSID\'
 echo ENUID=\'$ENUID\'
+
+node ./script/updateToDB.js --cookieValue=$cookieValue --ENUID=$ENUID --ENSID=$ENSID --LOGIN_USERNAME=$LOGIN_USERNAME
