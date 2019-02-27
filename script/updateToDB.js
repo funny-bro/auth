@@ -1,29 +1,33 @@
-(async function(){
-    const authDao = require('../db/auth/dao')
-    const argv = require('optimist').argv;
-    
+(async function () {
+  const authDao = require('../db/auth/dao')
+  const argv = require('optimist').argv;
 
-    let username = argv.LOGIN_USERNAME
-    let cookieValue = argv.cookieValue
-    let enuid = argv.ENUID
-    let ensid = argv.ENSID
-    let status = 'available'
 
-    const payload = {cookieValue : `${cookieValue}`,
-                      enuid : `${enuid}`,
-                      ensid : `${ensid}`,
-                      status : `${status}`}
+  const username = argv.LOGIN_USERNAME
+  const cookieValue = argv.cookieValue
+  const enuid = argv.ENUID
+  const ensid = argv.ENSID
+  const status = 'available'
 
-    const condition = {username}
+  const payload = {
+    cookieValue: `${cookieValue}`,
+    enuid: `${enuid}`,
+    ensid: `${ensid}`,
+    status: `${status}`
+  }
 
-    console.log('payload',payload)
-    console.log('condition',condition)
+  const condition = { username }
 
-    try {
-        await authDao.update(payload, condition)
+  console.log('payload', payload)
+  console.log('condition', condition)
 
-        console.log('[INFO] data update finish')
-      } catch(err){
-        console.log('err:', err)
-      }
+  try {
+    await authDao.update(payload, condition)
+
+    console.log('[INFO] data update finish')
+    process.exit()
+  } catch (err) {
+    console.log('err:', err)
+    process.exit(1)
+  }
 })()
