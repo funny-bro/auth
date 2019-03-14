@@ -1,9 +1,12 @@
 Feature('screenshoot: Coupon Create');
 
 // const timeStamp = `${new Date().getTime()}`
-const timeStamp = process.env.LOGIN_USERNAME
+const timeStamp = process.env.USERNAME
 
 Scenario(`screenshoot`, async function (I) {
+  console.log('[INFO] login as ', process.env.USERNAME)
+  console.log('[INFO] password ', process.env.PASSWORD)
+
   I.monitor()
   I.amOnPage('/Default.aspx?view=0')
   I.disableIFrameAlert('#IFRAME1')
@@ -15,8 +18,8 @@ Scenario(`screenshoot`, async function (I) {
   within({frame: ['#IFRAME1']}, () => {
     I.disableIFrameAlert('#IFRAME1')
     I.seeElement('#AuthScreen');
-    I.fillField('input[name="aa-uid"]', process.env.LOGIN_USERNAME);
-    I.fillField('input[name="aa-passwd"]',  process.env.LOGIN_PASSWORD);
+    I.fillField('input[name="aa-uid"]', process.env.USERNAME);
+    I.fillField('input[name="aa-passwd"]',  process.env.PASSWORD);
     I.fillField('input[name="aa-captchaID"]', verifyCode);
     I.wait(1)
     I.click('#submit_hn a')

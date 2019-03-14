@@ -3,7 +3,7 @@
   const argv = require('optimist').argv;
 
 
-  const username = argv.LOGIN_USERNAME
+  const username = argv.USERNAME
   const cookieValue = argv.cookieValue
   const enuid = argv.ENUID
   const ensid = argv.ENSID
