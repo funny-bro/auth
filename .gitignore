@@ -67,5 +67,6 @@ temp/mp3*
 serviceAccountKey.json
 env.sh
 syncOpenhouse.sh
+keys.json
 
 output

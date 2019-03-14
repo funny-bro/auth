@@ -12,11 +12,14 @@ $ docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:3.1
 
 ```
 
+## Init project
+ - keys.json
+ - env.sh
+
  ## Run
  ```
 $ npm start
  ```
-
 
 ## Connect to EC2
 
